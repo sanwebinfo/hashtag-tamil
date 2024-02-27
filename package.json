@@ -1,0 +1,41 @@
+{
+  "name": "hashtag-tamil",
+  "version": "1.0.0",
+  "description": "Hashtag Suggestions and Generator for Tamil post related Context.",
+  "main": "./dist/tag.js",
+  "scripts": {
+    "dev": "ts-node src/tag.ts",
+    "build": "tsc",
+    "start": "node dist/tag.js"
+  },
+  "bin": {
+    "hashtag": "./bin/index.mjs"
+  },
+  "keywords": [
+    "hashtag",
+    "hashtags",
+    "hashtag-generator",
+    "hashtag-suggestions",
+    "context",
+    "hashtag-context"
+  ],
+  "author": "Santhosh Veer",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/sanwebinfo/hashtag-tamil/issues"
+  },
+  "homepage": "https://github.com/sanwebinfo/hashtag-tamil#readme",
+  "devDependencies": {
+    "@types/node": "^20.11.20",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.3.3"
+  },
+  "dependencies": {
+    "sqlite3": "^5.1.7"
+  },
+  "files": [
+    "dist/**/*",
+    "db/**/*",
+    "bin/**/*"
+  ]
+}
