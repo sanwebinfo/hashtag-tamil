@@ -9,7 +9,7 @@
     "start": "node dist/tag.js"
   },
   "bin": {
-    "hashtag": "./bin/index.mjs"
+    "hashtag": "bin/index.mjs"
   },
   "keywords": [
     "hashtag",
@@ -35,7 +35,7 @@
   },
   "files": [
     "dist/**/*",
-    "db/**/*",
+    "db/hashtags.db",
     "bin/**/*"
   ]
 }

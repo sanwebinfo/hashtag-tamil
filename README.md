@@ -50,6 +50,18 @@ npm rm --global hashtag-tamil or pnpm uninstall --global hashtag-tamil
 hashtag "create tamil kavithai"
 ```
 
+- Access via **`NPX`**
+
+```sh
+npx hashtag-tamil "create tamil kavithai"
+```
+
+- install via **`NPM`**
+
+```sh
+npm install -g hashtag-tamil
+````
+
 ## Hashtag Database 🗃
 
 - `(/db)` Folder contains the JSON file with full list of hashtag related to the Context
