@@ -2,6 +2,7 @@ import * as path from 'path';
 import * as fs from 'fs/promises';
 import { exec } from 'child_process';
 
+
 interface HashtagResult {
     hashtags: string[];
     suggestions: string[];
@@ -16,7 +17,6 @@ interface HashtagsData {
     popularHashtags: string[];
 }
 
-
 async function loadPopularHashtags(): Promise<string[]> {
     let hashtags: string[];
     try {
@@ -24,6 +24,7 @@ async function loadPopularHashtags(): Promise<string[]> {
         try {
             sqlite3 = require('sqlite3');
         } catch (error) {
+            console.log('\n');
             console.error('✅ Using Fallback Database 🗂');
         }
 
