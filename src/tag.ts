@@ -1,5 +1,5 @@
 import * as path from 'path';
-import * as sqlite3 from 'sqlite3';
+import * as fs from 'fs/promises';
 import { exec } from 'child_process';
 
 interface HashtagResult {
@@ -12,26 +12,52 @@ interface HashtagSuggestion {
     relevance: number;
 }
 
-function loadPopularHashtags(): Promise<string[]> {
-    const dbPath = path.join(__dirname, '..', 'db', 'hashtags.db');
-    const db = new sqlite3.Database(dbPath);
-
-    const sql = 'SELECT * FROM hashtags';
-
-    return new Promise<string[]>((resolve, reject) => {
-        db.all(sql, [], (err, rows) => {
-            if (err) {
-                console.error('\x1b[31mError reading popular hashtags from SQLite database:\x1b[0m', err);
-                reject(err);
-            } else {
-                const hashtags = rows.map((row: any) => row.tag);
-                resolve(hashtags);
-            }
-        });
-
-        db.close();
-    });
+interface HashtagsData {
+    popularHashtags: string[];
 }
+
+
+async function loadPopularHashtags(): Promise<string[]> {
+    let hashtags: string[];
+    try {
+        let sqlite3;
+        try {
+            sqlite3 = require('sqlite3');
+        } catch (error) {
+            console.error('✅ Using Fallback Database 🗂');
+        }
+
+        if (sqlite3) {
+            const dbPath = path.join(__dirname, '..', 'db', 'hashtags.db');
+            const db = new sqlite3.Database(dbPath);
+
+            const sql = 'SELECT * FROM hashtags';
+
+            hashtags = await new Promise<string[]>((resolve, reject) => {
+                db.all(sql, [], (err: any, rows: any[]) => {
+                    if (err) {
+                        console.error('\x1b[31mError reading popular hashtags from SQLite database:\x1b[0m', err);
+                        reject(err);
+                    } else {
+                        const hashtags = rows.map((row: any) => row.tag);
+                        resolve(hashtags);
+                    }
+                });
+            });
+            db.close();
+        } else {
+            const filePath = path.join(__dirname, '..', 'db', 'hashtags.json');
+            const data = await fs.readFile(filePath, 'utf-8');
+            hashtags = JSON.parse(data).popularHashtags;
+        }
+    } catch (error) {
+        console.error('Error loading popular hashtags:', error);
+        throw error;
+    }
+
+    return hashtags || [];
+}
+
 
 function generateHashtagsWithSuggestions(sentence: string): Promise<HashtagResult> {
     const ignoreWords = new Set(["and", "it", "an", "for", "a", "has", "have", "there", "to", "the", "is", "was", "having", "in", "create"]);
@@ -112,7 +138,7 @@ hashtag "create tamil kavithai"
             let suggestedHashtags = result.suggestions.slice(0, 15);
                 suggestedHashtags = suggestedHashtags.filter((value, index, self) => {
                 return self.indexOf(value) === index;
-            });    
+            });
             console.log('\n');
             console.log('\x1b[32m✅ Generated Hashtags\x1b[0m');
             console.log('\n');

@@ -26,6 +26,9 @@ git clone https://github.com/sanwebinfo/hashtag-tamil.git
 cd hashtag-tamil
 
 ## Install packages
+pnpm install --no-optional 
+
+## if you want use sqlite3
 pnpm install
 
 ## build CLI
@@ -59,7 +62,13 @@ npx hashtag-tamil "create tamil kavithai"
 - install via **`NPM`**
 
 ```sh
+
+## without sqlite3
+npm install -g hashtag-tamil --omit=optional
+
+## with sqlite3
 npm install -g hashtag-tamil
+
 ````
 
 ## Hashtag Database 🗃
@@ -78,6 +87,25 @@ python duplicate.py
 
 ## Update database after adding new tags in JSON file
 python update.by
+```
+
+- **`sqlite3`** was optional if you want use just install the sqlite3 module without optional command else it uses a `json` file as fallback database (it was used by default for better compatibility)
+
+## MISC
+
+- Clear **`NPX`** Cache
+
+```sh
+npx clear-npx-cache
+```
+
+- **Termux sqlite3 installation**
+
+```sh
+pkg install binutils make
+pkg install clang libsqlite pkg-config
+pkg install sqlite
+npm install sqlite3 --build-from-source --sqlite=/data/data/com.termux/files/usr/bin/sqlite3
 ```
 
 ## LICENSE

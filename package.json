@@ -30,12 +30,13 @@
     "ts-node": "^10.9.2",
     "typescript": "^5.3.3"
   },
-  "dependencies": {
+  "optionalDependencies": {
     "sqlite3": "^5.1.7"
   },
   "files": [
     "dist/**/*",
     "db/hashtags.db",
+    "db/hashtags.json",
     "bin/**/*"
   ]
 }
