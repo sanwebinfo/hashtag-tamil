@@ -1,6 +1,6 @@
 # Hashtag
 
-![build-test](https://github.com/sanwebinfo/hashtag-tamil/workflows/build-test/badge.svg)  
+![build-test](https://github.com/sanwebinfo/hashtag-tamil/workflows/build-test/badge.svg) ![npm](https://github.com/sanwebinfo/hashtag-tamil/workflows/npm/badge.svg)  
 
 Hashtag Suggestions and Generator for Tamil post related Context.
 
