@@ -1,12 +1,15 @@
 {
   "name": "hashtag-tamil",
-  "version": "1.0.5",
+  "version": "1.0.4",
   "description": "Hashtag Suggestions and Generator for Tamil post related Context.",
   "main": "./dist/tag.js",
   "scripts": {
     "dev": "ts-node src/tag.ts",
     "build": "tsc",
     "start": "node dist/tag.js"
+  },
+  "publishConfig": {
+    "provenance": true
   },
   "bin": {
     "hashtag": "bin/index.mjs"
