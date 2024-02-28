@@ -1,6 +1,6 @@
 {
   "name": "hashtag-tamil",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Hashtag Suggestions and Generator for Tamil post related Context.",
   "main": "./dist/tag.js",
   "scripts": {
