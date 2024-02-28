@@ -24,10 +24,14 @@
   ],
   "author": "Santhosh Veer",
   "license": "MIT",
+  "repository": {
+		"type": "git",
+		"url": "https://github.com/sanwebinfo/hashtag-tamil"
+	},
   "bugs": {
     "url": "https://github.com/sanwebinfo/hashtag-tamil/issues"
   },
-  "homepage": "https://github.com/sanwebinfo/hashtag-tamil#readme",
+  "homepage": "https://github.com/sanwebinfo/hashtag-tamil",
   "devDependencies": {
     "@types/node": "^20.11.21",
     "ts-node": "^10.9.2",
