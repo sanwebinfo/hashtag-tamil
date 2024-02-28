@@ -69,7 +69,28 @@ npm install -g hashtag-tamil --omit=optional
 ## with sqlite3
 npm install -g hashtag-tamil
 
+## Remove Package
+npm uninstall -g hashtag-tamil
+
 ````
+
+- install and Manage via **`pnpm`**
+
+```sh
+
+## without sqlite3
+pnpm install -g hashtag-tamil --no-optional
+
+## with sqlite3
+pnpm install -g hashtag-tamil
+
+## update package
+pnpm update -g hashtag-tamil
+
+## Remove Package
+pnpm uninstall -g hashtag-tamil
+
+```
 
 ## Hashtag Database 🗃
 
