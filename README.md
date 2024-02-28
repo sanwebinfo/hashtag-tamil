@@ -112,12 +112,30 @@ python update.by
 
 - **`sqlite3`** was optional if you want use just install the sqlite3 module without optional command else it uses a `json` file as fallback database (it was used by default for better compatibility)
 
-## MISC
+## MISC (Development)
 
 - Clear **`NPX`** Cache
 
 ```sh
 npx clear-npx-cache
+```
+
+- Git and NPM
+
+```sh
+
+## Create New Package
+npm version [major|minor|patch]
+
+## Publish to Github and it automatically push to npm
+git push origin {your branch} --follow-tags
+
+## List tags
+git tag
+
+## Push tag
+git push --tags or git push origin vx.x.x
+
 ```
 
 - **Termux sqlite3 installation**
