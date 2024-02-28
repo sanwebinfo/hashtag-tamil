@@ -1,6 +1,6 @@
 {
   "name": "hashtag-tamil",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "Hashtag Suggestions and Generator for Tamil post related Context.",
   "main": "./dist/tag.js",
   "scripts": {
@@ -25,9 +25,9 @@
   "author": "Santhosh Veer",
   "license": "MIT",
   "repository": {
-		"type": "git",
-		"url": "https://github.com/sanwebinfo/hashtag-tamil"
-	},
+    "type": "git",
+    "url": "https://github.com/sanwebinfo/hashtag-tamil"
+  },
   "bugs": {
     "url": "https://github.com/sanwebinfo/hashtag-tamil/issues"
   },
