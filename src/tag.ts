@@ -2,7 +2,6 @@ import * as path from 'path';
 import * as fs from 'fs/promises';
 import { exec } from 'child_process';
 
-
 interface HashtagResult {
     hashtags: string[];
     suggestions: string[];
@@ -59,22 +58,22 @@ async function loadPopularHashtags(): Promise<string[]> {
     return hashtags || [];
 }
 
-
-function generateHashtagsWithSuggestions(sentence: string): Promise<HashtagResult> {
-    const ignoreWords = new Set(["and", "it", "an", "for", "a", "has", "have", "there", "to", "the", "is", "was", "having", "in", "create"]);
+async function generateHashtagsWithSuggestions(sentence: string): Promise<HashtagResult> {
+    const ignoreWords = new Set(["i", "am", "and", "it", "an", "for", "a", "has", "have", "there", "to", "the", "is", "was", "having", "in", "create"]);
     const words = sentence.split(/\s+/);
     const filteredWords = words.filter(word => word !== '' && !ignoreWords.has(word.toLowerCase()));
     const hashtags = filteredWords.map(word => '#' + word.toLowerCase());
 
     const popularHashtagsPromise = loadPopularHashtags();
 
-    return popularHashtagsPromise.then(popularHashtags => {
+    try {
+        const popularHashtags = await popularHashtagsPromise;
         const suggestions: HashtagSuggestion[] = [];
         for (const popularHashtag of popularHashtags) {
             const lowercasePopularHashtag = popularHashtag.toLowerCase();
             let relevance = 0;
-            for (const word of words) {
-                if (lowercasePopularHashtag.includes(word.toLowerCase())) {
+            for (const word_2 of words) {
+                if (lowercasePopularHashtag.includes(word_2.toLowerCase())) {
                     relevance++;
                 }
             }
@@ -88,13 +87,13 @@ function generateHashtagsWithSuggestions(sentence: string): Promise<HashtagResul
             hashtags: hashtags,
             suggestions: suggestions.map(suggestion => suggestion.hashtag)
         };
-    }).catch(error => {
+    } catch (error) {
         console.error('Failed to load popular hashtags:', error);
         return {
             hashtags: [],
             suggestions: []
         };
-    });
+    }
 }
 
 function validateInput(input: string): boolean {
@@ -143,21 +142,21 @@ hashtag "create tamil kavithai"
             console.log('\n');
             console.log('\x1b[32m✅ Generated Hashtags\x1b[0m');
             console.log('\n');
-            console.log(result.hashtags.join(', '));
+            console.log(result.hashtags.join(' '));
             console.log('\n');
             console.log('\x1b[32m🚀 Suggestions\x1b[0m');
             console.log('\n');
             if (suggestedHashtags.length > 0) {
-                console.log(suggestedHashtags.join(', '));
+                console.log(suggestedHashtags.join(' '));
                 try {
                     if (process.platform === 'linux') {
-                        exec(`echo '${result.hashtags.join(', ')} \n\n ${suggestedHashtags.join(', ')}' | xclip -selection clipboard`);
+                        exec(`echo '${result.hashtags.join(' ')} \n\n ${suggestedHashtags.join(' ')}' | xclip -selection clipboard`);
                     } else if (process.platform === 'darwin') {
-                        exec(`echo '${result.hashtags.join(', ')} \n\n ${suggestedHashtags.join(', ')}' | pbcopy`);
+                        exec(`echo '${result.hashtags.join(' ')} \n\n ${suggestedHashtags.join(' ')}' | pbcopy`);
                     } else if (process.platform === 'win32') {
-                        exec(`echo '${result.hashtags.join(', ')} \n\n ${suggestedHashtags.join(', ')}' | clip`);
+                        exec(`echo '${result.hashtags.join(' ')} \n\n ${suggestedHashtags.join(' ')}' | clip`);
                     } else if (process.platform === 'android') {
-                        exec(`termux-clipboard-set '${result.hashtags.join(', ')} \n\n ${suggestedHashtags.join(', ')}'`);
+                        exec(`termux-clipboard-set '${result.hashtags.join(' ')} \n\n ${suggestedHashtags.join(' ')}'`);
                     }
                     console.log('\n');
                     console.log('\x1b[33m✅ Output copied to clipboard!\x1b[0m\n');
