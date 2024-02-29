@@ -33,7 +33,7 @@
   },
   "homepage": "https://github.com/sanwebinfo/hashtag-tamil",
   "devDependencies": {
-    "@types/node": "^20.11.22",
+    "@types/node": "^20.11.24",
     "ts-node": "^10.9.2",
     "typescript": "^5.3.3"
   },
