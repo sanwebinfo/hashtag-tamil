@@ -13,7 +13,7 @@ jobs:
       matrix:
         node-version: [18.x, 20.x]
     steps:
-    - uses: actions/checkout@v4.1.5
+    - uses: actions/checkout@v4.1.6
     - uses: ./.github/actions/prepare
     - name: use pnpm to build CLI
       run: |
