@@ -19,7 +19,7 @@ jobs:
       - name: Setup Node 🔧
         uses: actions/setup-node@v4.4.0
         with:
-          node-version: '22.18.0'
+          node-version: '22.19.0'
           cache: pnpm
           registry-url: 'https://registry.npmjs.org'
       - name: build and Publish package on NPM 📦
